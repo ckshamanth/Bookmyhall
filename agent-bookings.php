@@ -96,7 +96,7 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="/index.html">
+			<a class="navbar-brand" href="index.html">
 			<img class="h-70px" src="https://i.ibb.co/SrRZx9y/Screenshot-2023-05-03-182623-removebg-preview.png" alt="Screenshot-2023-05-03-182623-removebg-preview" border="0">
 			</a>
 			<!-- Logo END -->
@@ -153,7 +153,7 @@
 						
 						<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
 				
-						<li><a class="dropdown-item bg-danger-soft-hover" href="/All Pages/sign-in.html"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+						<li><a class="dropdown-item bg-danger-soft-hover" href="sign-in.html"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
 						<li> <hr class="dropdown-divider"></li>
 
 						<!-- Dark mode options START -->
@@ -379,7 +379,7 @@ Footer START -->
 			<!-- Widget -->
 			<div class="col-md-4">
 				<div class="text-center text-md-start mb-3 mb-md-0">
-					<a href="/index.html"> <img class="h-40px" src="https://i.ibb.co/SrRZx9y/Screenshot-2023-05-03-182623-removebg-preview.png" alt="Screenshot-2023-05-03-182623-removebg-preview" border="0"> </a>
+					<a href="index.html"> <img class="h-40px" src="https://i.ibb.co/SrRZx9y/Screenshot-2023-05-03-182623-removebg-preview.png" alt="Screenshot-2023-05-03-182623-removebg-preview" border="0"> </a>
 				</div> 
 			</div>
 			
