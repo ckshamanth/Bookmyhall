@@ -1,7 +1,8 @@
 **Project Summary:**
 Our project aims to simplify the venue booking process by developing a user-friendly Android app and website. Users can effortlessly search, book, and review convention halls based on location, date, capacity, and amenities, enhancing the overall experience of event planning. The platform integrates real-time availability tracking, location-based services, online payments, and a feedback system for continuous improvement. 
 
-![bookmyhall ss](https://github.com/ckshamanth/BookMyHall/assets/122350335/4bee17a6-60cf-4173-8478-a20dd162d857)
+
+![bookmyhall ss](https://github.com/ckshamanth/Bookmyhall/assets/122350335/fa8df732-66b3-4572-9b47-83fb1efefa44)
 
 
 **GitHub Readme.md Content:**
