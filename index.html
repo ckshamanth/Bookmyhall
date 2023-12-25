@@ -1,0 +1,647 @@
+<!DOCTYPE html><html lang="en" data-bs-theme="light"><head>
+	<title>BookMyHall - Online Convention Hall Booking</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="BookMyHall - Online Convention Hall Booking">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+ 
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+		
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Poppins:wght@400;500;700&amp;display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/tiny-slider.css">
+	<link rel="stylesheet" type="text/css" href="css/glightbox.css">
+	<link rel="stylesheet" type="text/css" href="css/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="css/choices.min.css">
+	
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+<body class="has-navbar-mobile">
+
+<!-- Header START -->
+<header class="navbar-light header-sticky">
+	<!-- Logo Nav START -->
+	<nav class="navbar navbar-expand-xl">
+		<div class="container">
+			<!-- Logo START -->
+			<a class="navbar-brand" href="/index.html">
+				<img class="h-70px" src="https://i.ibb.co/SrRZx9y/Screenshot-2023-05-03-182623-removebg-preview.png" alt="Screenshot-2023-05-03-182623-removebg-preview" border="0">
+				
+			</a>
+			<!-- Logo END -->
+
+			<!-- Responsive navbar toggler -->
+			
+
+			<!-- Responsive category toggler -->
+			
+
+			<!-- Main navbar START -->
+			<div class="navbar-collapse collapse" id="navbarCollapse">
+				<ul class="navbar-nav navbar-nav-scroll me-auto">
+
+	
+			</div>
+			<!-- Main navbar END -->
+
+
+			<div class="hstack gap-4 flex-wrap align-items-center">
+				<!-- Button -->
+				<a href="sign-in.html" class="btn btn-primary-soft mb-0" id="locate">Admin</a>
+			</div>
+			<!-- Dark mode options START -->
+<li class="nav-item dropdown me-2">
+	<button class="btn btn-link text-warning p-0 mb-0" id="bd-theme"
+	type="button"
+	aria-expanded="false"
+	data-bs-toggle="dropdown"
+	data-bs-display="static">
+	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-circle-half theme-icon-active fa-fw" viewBox="0 0 16 16">
+		<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z">
+		<use href="#"></use>
+	</svg>
+	</button>
+
+	<ul class="dropdown-menu min-w-auto dropdown-menu-end" aria-labelledby="bd-theme">
+		<li class="mb-1">
+			<button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
+				<svg width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill fa-fw mode-switch me-1" viewBox="0 0 16 16">
+					<path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+					<use href="#"></use>
+				</svg>Light
+			</button>
+		</li>
+		<li class="mb-1">
+			<button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill fa-fw mode-switch me-1" viewBox="0 0 16 16">
+					<path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+					<path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+					<use href="#"></use>
+				</svg>Dark
+			</button>
+		</li>
+		<li>
+			<button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half fa-fw mode-switch me-1" viewBox="0 0 16 16">
+					<path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z">
+					<use href="#"></use>
+				</svg>Auto
+			</button>
+		</li>
+	</ul>
+</li>
+<!-- Dark mode options END -->
+
+				<!-- Profile dropdown START -->
+				
+				<!-- Profile dropdown END -->
+			</ul>
+			<!-- Profile and Notification START -->
+
+		</div>
+	</nav>
+	<!-- Logo Nav END -->
+</header>
+<!-- Header END -->
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+	
+<!-- =======================
+Main Banner START -->
+<section class="pt-3 pt-lg-5">
+	<div class="container">
+			<!-- Content and Image START -->
+			<div class="row g-4 g-lg-5">
+				<!-- Content -->
+				<div class="col-lg-6 position-relative mb-4 mb-md-0">
+					<!-- Title -->
+					<h1 class="mb-4 mt-md-5 display-5">Find the top
+						<span class="position-relative z-index-9">Venue nearby.
+							<!-- SVG START -->
+							<span class="position-absolute top-50 start-50 translate-middle z-index-n1 d-none d-md-block mt-4">
+								<svg width="390.5px" height="21.5px" viewBox="0 0 445.5 21.5">
+									<path class="fill-primary opacity-7" d="M409.9,2.6c-9.7-0.6-19.5-1-29.2-1.5c-3.2-0.2-6.4-0.2-9.7-0.3c-7-0.2-14-0.4-20.9-0.5 c-3.9-0.1-7.8-0.2-11.7-0.3c-1.1,0-2.3,0-3.4,0c-2.5,0-5.1,0-7.6,0c-11.5,0-23,0-34.5,0c-2.7,0-5.5,0.1-8.2,0.1 c-6.8,0.1-13.6,0.2-20.3,0.3c-7.7,0.1-15.3,0.1-23,0.3c-12.4,0.3-24.8,0.6-37.1,0.9c-7.2,0.2-14.3,0.3-21.5,0.6 c-12.3,0.5-24.7,1-37,1.5c-6.7,0.3-13.5,0.5-20.2,0.9C112.7,5.3,99.9,6,87.1,6.7C80.3,7.1,73.5,7.4,66.7,8 C54,9.1,41.3,10.1,28.5,11.2c-2.7,0.2-5.5,0.5-8.2,0.7c-5.5,0.5-11,1.2-16.4,1.8c-0.3,0-0.7,0.1-1,0.1c-0.7,0.2-1.2,0.5-1.7,1 C0.4,15.6,0,16.6,0,17.6c0,1,0.4,2,1.1,2.7c0.7,0.7,1.8,1.2,2.7,1.1c6.6-0.7,13.2-1.5,19.8-2.1c6.1-0.5,12.3-1,18.4-1.6 c6.7-0.6,13.4-1.1,20.1-1.7c2.7-0.2,5.4-0.5,8.1-0.7c10.4-0.6,20.9-1.1,31.3-1.7c6.5-0.4,13-0.7,19.5-1.1c2.7-0.1,5.4-0.3,8.1-0.4 c10.3-0.4,20.7-0.8,31-1.2c6.3-0.2,12.5-0.5,18.8-0.7c2.1-0.1,4.2-0.2,6.3-0.2c11.2-0.3,22.3-0.5,33.5-0.8 c6.2-0.1,12.5-0.3,18.7-0.4c2.2-0.1,4.4-0.1,6.7-0.1c11.5-0.1,23-0.2,34.6-0.4c7.2-0.1,14.4-0.1,21.6-0.1c12.2,0,24.5,0.1,36.7,0.1 c2.4,0,4.8,0.1,7.2,0.2c6.8,0.2,13.5,0.4,20.3,0.6c5.1,0.2,10.1,0.3,15.2,0.4c3.6,0.1,7.2,0.4,10.8,0.6c10.6,0.6,21.1,1.2,31.7,1.8 c2.7,0.2,5.4,0.4,8,0.6c2.9,0.2,5.8,0.4,8.6,0.7c0.4,0.1,0.9,0.2,1.3,0.3c1.1,0.2,2.2,0.2,3.2-0.4c0.9-0.5,1.6-1.5,1.9-2.5 c0.6-2.2-0.7-4.5-2.9-5.2c-1.9-0.5-3.9-0.7-5.9-0.9c-1.4-0.1-2.7-0.3-4.1-0.4c-2.6-0.3-5.2-0.4-7.9-0.6 C419.7,3.1,414.8,2.9,409.9,2.6z"/>
+								</svg>
+							</span>
+							<!-- SVG END -->
+						</span>
+					</h1>
+					<!-- Info -->
+					<p class="mb-4"> Discover the ideal location for your special occasion. </p>
+
+					<!-- Buttons -->
+					<div class="hstack gap-4 flex-wrap align-items-center">
+						<!-- Button -->
+						<a href="/All Pages/hotel-grid.html" class="btn btn-primary-soft mb-0" id="locate-me-button">Discover now</a>
+					</div>
+					
+				</div>
+				
+				<!-- Image -->
+				<div class="col-lg-6 position-relative">
+
+					<img src="images/14.jpg" class="rounded" alt>
+
+
+					
+
+					<!-- Round image group -->
+					<div class="vstack gap-5 align-items-center position-absolute top-0 start-0 d-none d-md-flex mt-4 ms-n3">
+						<img class="icon-lg shadow-lg border border-3 border-white rounded-circle" src="images/17.jpg" alt="avatar">
+						<img class="icon-xl shadow-lg border border-3 border-white rounded-circle" src="images/18.jpg" alt="avatar">
+					</div>
+				</div>
+			</div>
+			<!-- Content and Image END -->
+			<section>
+			</section>
+			<section>
+			</section>
+		<!-- Search START -->
+		<div class="row">
+			<div class="col-xl-10 position-relative mt-n3 mt-xl-n9">
+				<!-- Title -->
+				<h6 class="d-none d-xl-block mb-3">Check Availability</h6>
+
+				<!-- Booking from START -->
+				<form class="card shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4">
+					<div class="row g-4 align-items-center">
+						<!-- Location -->
+						<div class="col-lg-4">
+							<div class="form-control-border form-control-transparent form-fs-md d-flex">
+								<!-- Icon -->
+								<i class="bi bi-geo-alt fs-3 me-2 mt-2"></i>
+								<!-- Select input -->
+								<div class="flex-grow-1">
+									<label class="form-label">Location</label>
+									<select class="form-select js-choice" data-search-enabled="true">
+										
+										<option>Hassan</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<!-- Check in -->
+						<div class="col-lg-4">
+							<div class="d-flex">
+								<!-- Icon -->
+								<i class="bi bi-calendar fs-3 me-2 mt-2"></i>
+								<!-- Date input -->
+								<div class="form-control-border form-control-transparent form-fs-md">
+									<label class="form-label">Check in - out</label>
+									<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date" value="19 Sep to 28 Sep">
+								</div>
+							</div>
+						</div>
+
+						<!-- Guest -->
+						<div class="col-lg-4">
+							<div class="form-control-border form-control-transparent form-fs-md d-flex">
+								<!-- Icon -->
+								<i class="bi bi-person fs-3 me-2 mt-2"></i>
+								<!-- Dropdown input -->
+								<div class="w-100">
+									<label class="form-label">Approx. guests</label>
+									<div class="dropdown guest-selector me-2">
+										<input type="text" class="form-guest-selector form-control selection-result" value="500" data-bs-auto-close="outside" data-bs-toggle="dropdown">																			
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Button -->
+					<div class="btn-position-md-middle">
+						<a class="icon-lg btn btn-round btn-primary mb-0" href="/All Pages/hotel-grid.html"><i class="bi bi-search fa-fw"></i></a>
+					</div>
+				</form>
+				<!-- Booking from END -->
+			</div>
+		</div>
+		<!-- Search END -->
+	</div>
+</section>
+<!-- =======================
+Main Banner END -->
+
+<!-- =======================
+Best deal START -->
+<section class="pb-2 pb-lg-5">
+	<div class="container">
+		<div class="row mb-4">
+			<div class="col-12 text-center">
+				<h2 class="mb-0">Featured Hotels</h2>
+			</div>
+		</div>
+		<!-- Slider START -->
+		<div class="tiny-slider arrow-round arrow-blur arrow-hover">
+			<div class="tiny-slider-inner" data-autoplay="true" data-arrow="true" data-edge="2" data-dots="false" data-items-xl="3" data-items-lg="2" data-items-md="1">
+				<!-- Slider item -->
+				<div class="col-sm-6 col-xl-3">
+					<!-- Card START -->
+					<div class="card card-img-scale overflow-hidden bg-transparent">
+						<!-- Image and overlay -->
+						<div class="card-img-scale-wrapper rounded-3">
+							<!-- Image -->
+							<img src="https://lh3.googleusercontent.com/p/AF1QipO9Wo6zC84CP0_HYHP5a__EcPjbx6HdI9Abk1F7=s1360-w1360-h1020" class="card-img" alt="hotel image">
+							<!-- Badge -->
+							<div class="position-absolute bottom-0 start-0 p-3">
+								<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>Hassan</div>
+							</div>
+						</div>
+	
+						<!-- Card body -->
+						<div class="card-body px-2">
+							<!-- Title -->
+							<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">MK Convention Centre</a></h5>
+							<!-- Price and rating -->
+							<div class="d-flex justify-content-between align-items-center">
+								<h6 class="text-success mb-0">₹66555 <small class="fw-light">/starting at</small> </h6>
+								<h6 class="mb-0">4.8<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+							</div>
+						</div>
+					</div>
+					<!-- Card END -->
+				</div>
+
+				<!-- Slider item -->
+				<div class="col-sm-6 col-xl-3">
+				<!-- Card START -->
+				<div class="card card-img-scale overflow-hidden bg-transparent">
+					<!-- Image and overlay -->
+					<div class="card-img-scale-wrapper rounded-3">
+						<!-- Image -->
+						<img src="https://lh3.googleusercontent.com/p/AF1QipP-KZlBfBBuRJMv4MChePIvnAE-mxFjacz_skJz=s1360-w1360-h1020" class="card-img" alt="hotel image">
+						<!-- Badge -->
+						<div class="position-absolute bottom-0 start-0 p-3">
+							<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>Hassan</div>
+						</div>
+					</div>
+
+					<!-- Card body -->
+					<div class="card-body px-2">
+						<!-- Title -->
+						<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">Jnanakshi Convention Hall</a></h5>
+						<!-- Price and rating -->
+						<div class="d-flex justify-content-between align-items-center">
+							<h6 class="text-success mb-0">₹45555 <small class="fw-light">/starting at</small> </h6>
+							<h6 class="mb-0">4.5<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+						</div>
+					</div>
+				</div>
+				<!-- Card END -->
+			</div>
+
+				<!-- Slider item -->
+				<div class="col-sm-6 col-xl-3">
+					<!-- Card START -->
+					<div class="card card-img-scale overflow-hidden bg-transparent">
+						<!-- Image and overlay -->
+						<div class="card-img-scale-wrapper rounded-3">
+							<!-- Image -->
+							<img src="https://lh3.googleusercontent.com/p/AF1QipMtYl3e3eunkeaLLQFrm0PvX8smrwo5cLPInmIc=s1360-w1360-h1020" class="card-img" alt="hotel image">
+							<!-- Badge -->
+							<div class="position-absolute bottom-0 start-0 p-3">
+								<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>Hassan</div>
+							</div>
+						</div>
+	
+						<!-- Card body -->
+						<div class="card-body px-2">
+							<!-- Title -->
+							<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">
+								Taj Convention Centre</a></h5>
+							<!-- Price and rating -->
+							<div class="d-flex justify-content-between align-items-center">
+								<h6 class="text-success mb-0">₹45555 <small class="fw-light">/starting at</small> </h6>
+								<h6 class="mb-0">4.5<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+							</div>
+						</div>
+					</div>
+					<!-- Card END -->
+				</div>	
+
+				<!-- Slider item -->
+				<div class="col-sm-6 col-xl-3">
+					<!-- Card START -->
+					<div class="card card-img-scale overflow-hidden bg-transparent">
+						<!-- Image and overlay -->
+						<div class="card-img-scale-wrapper rounded-3">
+							<!-- Image -->
+							<img src="https://lh3.googleusercontent.com/p/AF1QipN3PNQsp3XjIzeBxha0TVmHq6_xNQrgPqpwPfc=s1360-w1360-h1020" class="card-img" alt="hotel image">
+							<!-- Badge -->
+							<div class="position-absolute bottom-0 start-0 p-3">
+								<div class="badge text-bg-dark fs-6 rounded-pill stretched-link"><i class="bi bi-geo-alt me-2"></i>Hassan</div>
+							</div>
+						</div>
+	
+						<!-- Card body -->
+						<div class="card-body px-2">
+							<!-- Title -->
+							<h5 class="card-title"><a href="hotel-detail.html" class="stretched-link">RG Palace Convention Hall</a></h5>
+							<!-- Price and rating -->
+							<div class="d-flex justify-content-between align-items-center">
+								<h6 class="text-success mb-0">₹38555 <small class="fw-light">/starting at</small> </h6>
+								<h6 class="mb-0">4.6<i class="fa-solid fa-star text-warning ms-1"></i></h6>
+							</div>
+						</div>
+					</div>
+					<!-- Card END -->
+				</div>
+			</div>
+		</div>	
+		<!-- Slider END -->
+	</div>
+</section>
+<!-- =======================
+Best deal END -->
+
+<!-- =======================
+About START -->
+
+
+
+
+
+<!-- =======================
+
+
+
+Download app START -->
+<section class="bg-light">
+	<div class="container">
+		<div class="row g-4">
+
+			<!-- Help -->
+			<div class="col-md-6 col-xxl-4">
+				<div class="bg-body d-flex rounded-3 h-100 p-4">
+					<h3><i class="fa-solid fa-hand-holding-heart"></i></h3>
+					<div class="ms-3">
+						<h5>24x7 Help</h5>
+						<p class="mb-0">If we fall short of your expectation in any way, let us know</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Trust -->
+			<div class="col-md-6 col-xxl-4">
+				<div class="bg-body d-flex rounded-3 h-100 p-4">
+					<h3><i class="fa-solid fa-hand-holding-usd"></i></h3>
+					<div class="ms-3">
+						<h5>Payment Trust</h5>
+						<p class="mb-0">All refunds come with no questions asked guarantee</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Download app -->
+			<div class="col-md-6 col-xxl-4">
+				<div class="bg-body d-flex rounded-3 h-100 p-4">
+					<h3><i class="fa-solid fa-hand-holding-usd"></i></h3>
+					<div class="ms-3">
+						<h5>Guaranteed bookings</h5>
+						<p class="mb-0">Guaranteed Bookings with a 100% satisfaction guarantee</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+<!-- =======================
+Download app END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- =======================
+Footer START -->
+<footer class="bg-dark pt-5">
+	<div class="container">
+		<!-- Row START -->
+		<div class="row g-4">
+
+			<!-- Widget 1 START -->
+			<div class="col-lg-3">
+				<!-- logo -->
+				<a href="/index.html">
+					<img class="h-50px" src="https://i.ibb.co/SrRZx9y/Screenshot-2023-05-03-182623-removebg-preview.png" alt="Screenshot-2023-05-03-182623-removebg-preview" border="0">
+				</a>
+				<p class="my-3 text-muted">Get a reliable booking in no time, and make your event the best it can be.</p>
+				<p class="mb-2"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-telephone me-2"></i>1234567890</a> </p>
+				<p class="mb-0"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-envelope me-2"></i>bookmyhall@gmail.com</a></p>
+			</div>
+			<!-- Widget 1 END -->
+
+			<!-- Widget 2 START -->
+			<div class="col-lg-8 ms-auto">
+				<div class="row g-4">
+					<!-- Link block -->
+					<div class="col-6 col-md-3">
+						<h5 class="text-white mb-2 mb-md-4">Page</h5>
+						<ul class="nav flex-column text-primary-hover">
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Contact us</a></li>
+						</ul>
+					</div>
+
+					<!-- Link block -->
+					<div class="col-6 col-md-3">
+						<h5 class="text-white mb-2 mb-md-4">Link</h5>
+						<ul class="nav flex-column text-primary-hover">
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Sign up</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Sign in</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Privacy Policy</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Terms</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Cookie</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Support</a></li>
+						</ul>
+					</div>
+
+					<div class="col-sm-5 col-md-6 col-lg-3 text-sm-end">
+						<h5 class="text-white mb-2">Follow us on</h5>
+						<ul class="list-inline mb-0 mt-3">
+							<li class="list-inline-item"> <a class="btn btn-sm px-2 bg-facebook mb-0" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
+							<li class="list-inline-item"> <a class="btn btn-sm shadow px-2 bg-instagram mb-0" href="#"><i class="fab fa-fw fa-instagram"></i></a> </li>
+							<li class="list-inline-item"> <a class="btn btn-sm shadow px-2 bg-twitter mb-0" href="#"><i class="fab fa-fw fa-twitter"></i></a> </li>
+							<li class="list-inline-item"> <a class="btn btn-sm shadow px-2 bg-linkedin mb-0" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> </li>
+						</ul>	
+					</div>
+									
+				</div>
+			</div>
+			<!-- Widget 2 END -->
+
+		</div><!-- Row END -->
+
+
+
+		<!-- Payment and card -->
+		<div class="row g-4 justify-content-between mt-0 mt-md-2">
+
+			<!-- Payment card -->
+			<div class="col-sm-7 col-md-6 col-lg-4">
+				<h5 class="text-white mb-2">Payment & Security</h5>
+				<ul class="list-inline mb-0 mt-3">
+					<li class="list-inline-item"> <a href="#"><img src="fonts/paypal.svg" class="h-30px" alt></a></li>
+					<li class="list-inline-item"> <a href="#"><img src="fonts/visa.svg" class="h-30px" alt></a></li>
+					<li class="list-inline-item"> <a href="#"><img src="fonts/mastercard.svg" class="h-30px" alt></a></li>
+					<li class="list-inline-item"> <a href="#"><img src="fonts/expresscard.svg" class="h-30px" alt></a></li>
+				</ul>
+			</div>
+
+			<!-- Social media icon -->
+			
+		</div>
+
+		<!-- Divider -->
+		<hr class="mt-4 mb-0">
+
+		<!-- Bottom footer -->
+		<div class="row">
+			<div class="container">
+				<div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
+					<!-- copyright text -->
+					<div class="text-muted text-primary-hover"> Copyrights ©2023 BookMyHall.  </div>
+					<!-- copyright links-->
+					<div class="nav mt-2 mt-lg-0">
+						<ul class="list-inline text-primary-hover mx-auto mb-0">
+							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Privacy policy</a></li>
+							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Terms and conditions</a></li>
+							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted pe-0" href="#">Refund policy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- =======================
+Footer END -->
+
+<!-- Back to top -->
+<div class="back-top"></div>
+
+<!-- Navbar mobile START -->
+<div class="navbar navbar-mobile">
+	<ul class="navbar-nav">
+		<!-- Nav item Home -->
+		<li class="nav-item">
+			<a class="nav-link active" href="/index.html"><i class="bi bi-house-door fa-fw"></i>
+				<span class="mb-0 nav-text">Home</span>
+			</a>	
+		</li>
+
+		<!-- Nav item My Trips -->
+		<li class="nav-item"> 
+			<a class="nav-link" href="account-bookings.html"><i class="bi bi-briefcase fa-fw"></i>
+				<span class="mb-0 nav-text">My Bookings</span>
+			</a>	
+		</li>
+
+		<!-- Nav item Offer -->
+		<li class="nav-item"> 
+			<a class="nav-link" href="offer-detail.html"><i class="bi bi-percent fa-fw"></i>
+				<span class="mb-0 nav-text">Offer</span> 
+			</a>
+		</li>
+
+		<!-- Nav item Account -->
+		<li class="nav-item"> 
+			<a class="nav-link" href="account-profile.html"><i class="bi bi-person-circle fa-fw"></i>
+				<span class="mb-0 nav-text">Account</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!-- Navbar mobile END -->
+
+<!-- Bootstrap JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="js/tiny-slider.js"></script>
+<script src="js/glightbox.js"></script>
+<script src="js/flatpickr.min.js"></script>
+<script src="js/choices.min.js"></script>
+
+<!-- ThemeFunctions -->
+<script src="js/functions.js"></script>
+
+<script src="js/current location .js"></script>
+<script src="js/location.js"></script>
+
+</body></html>

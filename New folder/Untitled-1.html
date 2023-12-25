@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel Grid</title>
+  <link rel="stylesheet" href="/All Pages/assets/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="row" id="hotels-container">
+      <!-- Hotel cards will be dynamically generated here -->
+    </div>
+  </div>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0"></script>
+  <script>
+    // Function to create a hotel card
+    function createHotelCard(hotel) {
+      const card = `
+      <div class="col-md-6 col-xl-4">
+				<div class="card shadow p-2 pb-0 h-100">
+					<!-- Image -->
+					<img src="${hotel.Image}" class="rounded-2" alt="Card image">
+					<!-- Card body START -->
+					<div class="card-body px-3 pb-0">
+						<!-- Rating and cart -->
+						<div class="d-flex justify-content-between mb-3">
+							<a href="#" class="badge bg-dark text-white"><i class="bi fa-fw bi-star-fill me-2 text-warning"></i>${hotel.Rating}</a>
+							<a href="#" class="h6 mb-0 z-index-2"><i class="bi fa-fw bi-bookmark"></i></a>
+						</div>
+
+						<!-- Title -->
+						<h5 class="card-title"><a href="hotel-detail.html">${hotel.Name}</a></h5>
+
+						
+					</div>
+					<!-- Card body END -->
+
+					<!-- Card footer START-->
+					<div class="card-footer pt-0">
+						<!-- Price and Button -->
+						<div class="d-sm-flex justify-content-sm-between align-items-center">
+							<!-- Price -->
+							<div class="d-flex align-items-center">
+								<h5 class="fw-normal text-success mb-0 me-1">${hotel.Price}</h5>
+								<span class="mb-0 me-2">/day</span>
+								
+							</div>
+							<!-- Button -->
+							<div class="mt-2 mt-sm-0">
+								<a href="hotel-detail.html" class="btn btn-sm btn-primary-soft mb-0 w-100">View Detail<i class="bi bi-arrow-right ms-2"></i></a>    
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+      `;
+      return card;
+    }
+
+    // Function to parse the CSV data and generate hotel cards
+    function generateHotelCards(data) {
+      const hotelsContainer = $('#hotels-container');
+      data.forEach(hotelData => {
+        const hotel = {
+          Image: hotelData.Image,
+          Rating: hotelData.Rating,
+          Name: hotelData.Name,
+          Price: hotelData.Price,
+    
+        };
+        const hotelCard = createHotelCard(hotel);
+        hotelsContainer.append(hotelCard);
+      });
+    }
+
+    // Fetch the CSV file and generate hotel cards
+    $(document).ready(function() {
+      Papa.parse('hotels.csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+          const hotels = results.data;
+          generateHotelCards(hotels);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

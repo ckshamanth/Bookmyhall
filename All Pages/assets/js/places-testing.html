@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nearby Places</title>
+    <style>
+      #places-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+      .place-card {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      .place-name {
+        font-weight: bold;
+        margin: 5px 0;
+      }
+      .place-image {
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+      }
+      .place-rating {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Find Nearby Places</h1>
+    <button onclick="getCurrentLocation()">Find Nearby Places</button>
+    <div id="map"></div>
+
+    <div id="places-container"></div>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ywNCiVeJNcxz7eK9KFzYwmvXleZT3ko&libraries=places&callback=initMap"></script>
+
+    <script>
+      let map;
+      let service;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -33.867, lng: 151.195 },
+          zoom: 15,
+        });
+      }
+
+      function getCurrentLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+
+            map = new google.maps.Map(document.getElementById("map"), {
+              center: pos,
+              zoom: 15,
+            });
+
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(
+              {
+                location: pos,
+                radius: 5000,
+                types: ["restaurants"],
+              },
+              callback
+            );
+          });
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    const placesContainer = document.getElementById("places-container");
+    placesContainer.innerHTML = "";
+
+    // get user's current location
+    const userLocation = new google.maps.LatLng(
+      map.getCenter().lat(),
+      map.getCenter().lng()
+    );
+
+    // create Distance Matrix service
+    const distanceService = new google.maps.DistanceMatrixService();
+    
+    for (let i = 0; i < results.length; i++) {
+      const place = results[i];
+      const name = place.name;
+      const photoUrl = place.photos
+        ? place.photos[0].getUrl({ maxWidth: 500, maxHeight: 500 })
+        : "";
+      const rating = place.rating || "N/A";
+      let distance;
+
+      // calculate distance between user's location and restaurant
+      distanceService.getDistanceMatrix(
+        {
+          origins: [userLocation],
+          destinations: [place.geometry.location],
+          travelMode: google.maps.TravelMode.DRIVING,
+        },
+        function (response, status) {
+          if (status == google.maps.DistanceMatrixStatus.OK) {
+            distance = response.rows[0].elements[0].distance.text;
+            // create the place card
+            const placeCard = document.createElement("div");
+            placeCard.className = "place-card";
+
+            const placeImage = document.createElement("img");
+            placeImage.className = "place-image";
+            placeImage.src = photoUrl;
+
+            const placeName = document.createElement("p");
+            placeName.className = "place-name";
+            placeName.textContent = name;
+
+            const placeRating = document.createElement("p");
+            placeRating.className = "place-rating";
+            placeRating.textContent = `Rating: ${rating}`;
+
+            const placeDistance = document.createElement("p");
+            placeDistance.className = "place-distance";
+            placeDistance.textContent = `Distance: ${distance}`;
+
+            const directionButton = document.createElement("button");
+            directionButton.textContent = "Get Directions";
+            directionButton.addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const origin = new google.maps.LatLng(
+                    position.coords.latitude,
+                    position.coords.longitude
+                    );
+                    const destination = place.geometry.location;
+                    const directionsService = new google.maps.DirectionsService();
+                    const directionsRenderer = new google.maps.DirectionsRenderer();
+                    directionsRenderer.setMap(map);
+                    directionsService.route(
+                    {
+                        origin: origin,
+                        destination: destination,
+                        travelMode: google.maps.TravelMode.DRIVING,
+                    },
+                    (response, status) => {
+                        if (status === "OK") {
+                        directionsRenderer.setDirections(response);
+
+                        window.open(
+                            `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`,
+                            "_blank"
+                        );
+                        } else {
+                        alert("Directions request failed due to " + status);
+                        }
+                    }
+                    );
+                },
+                (error) => {
+                    console.log(error);
+                    alert("Could not get current location.");
+                }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+            });
+
+
+            placeCard.appendChild(placeImage);
+            placeCard.appendChild(placeName);
+            placeCard.appendChild(placeRating);
+            placeCard.appendChild(placeDistance);
+            
+            placeCard.appendChild(directionButton);
+            placesContainer.appendChild(placeCard);
+          }
+        }
+      );
+    }
+  } else {
+    alert("Nearby search failed: " + status);
+  }
+}
+
+
+    </script>
+  </body>
+</html>
