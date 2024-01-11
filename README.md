@@ -37,10 +37,4 @@ Welcome to VenueBooking, a revolutionary platform designed to streamline the pro
 - Google Maps API for location-based services
 - Stripe API for online payments
 
-## Contributions
-We welcome contributions from the community to enhance and improve VenueBooking. Please refer to our [Contribution Guidelines](CONTRIBUTING.md) for more details.
-
-## License
-VenueBooking is licensed under the [MIT License](LICENSE.md). Feel free to explore, modify, and share the code.
-
 Happy Booking! 🎉
